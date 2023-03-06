@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: software-templates
+  description: A collection of Backstage templates for my-org-idp
+spec:
+  type: url
+  targets:
+    - https://github.com/my-org-idp/software-templates/blob/main/scaffolder-templates/quarkus-web-template/template.yaml
