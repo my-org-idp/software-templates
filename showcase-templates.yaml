@@ -7,3 +7,4 @@ spec:
   type: url
   targets:
     - https://github.com/my-org-idp/software-templates/blob/main/scaffolder-templates/quarkus-web-template/template.yaml
+    - https://github.com/my-org-idp/software-templates/blob/main/scaffolder-templates/deployment-template/template.yaml

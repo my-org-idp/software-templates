@@ -22,8 +22,8 @@ spec:
       properties:
         inputObject:
           type: object
-          title: object input test
-          description: a little nested thing never hurt anyone right?
+          title: resources
+          description: Resource requests and limits for application
           properties:
             first:
               type: string
