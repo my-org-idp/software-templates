@@ -1,0 +1,7 @@
+resources:
+  requests:
+    cpu: ${{values.requests_cpu}}
+    memory: ${{values.requests_memory}}
+  limits:
+    cpu: 500m
+    memory: 1024Mi

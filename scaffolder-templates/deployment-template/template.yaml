@@ -44,7 +44,7 @@ spec:
         requests_memory:
           title: Request Memory
           type: string
-
+          
     - title: Application repository Information
       required:
         - repoUrl
