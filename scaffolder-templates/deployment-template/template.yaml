@@ -14,13 +14,13 @@ spec:
   parameters:
     - title: Provide Information for Application
       required:
-        - component_id
+        - application_id
       properties:
-        component_id:
+        application_id:
           title: Name
           type: string
-          description: Unique name of the component
-          default: deployment-<name application>
+          description: Unique name of the deployment application
+          ui:placeholder: deployment-<name application>
           ui:field: EntityNamePicker
         description:
           title: Description
@@ -54,14 +54,14 @@ spec:
       input:
         url: ./skeleton
         values:
-          component_id: ${{ parameters.component_id }}
+          application_id: ${{ parameters.application_id }}
           description: ${{ parameters.description }}
 
     - id: publish
       name: Publishing to Source Code Repository
       action: publish:github
       input:
-        description: This is ${{ parameters.component_id }}
+        description: This is ${{ parameters.application_id }}
         repoUrl: ${{ parameters.repoUrl }}
         defaultBranch: main
         repoVisibility: public
