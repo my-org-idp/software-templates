@@ -44,7 +44,7 @@ spec:
         requests_memory:
           title: Request Memory
           type: string
-          
+
     - title: Application repository Information
       required:
         - repoUrl
@@ -66,6 +66,8 @@ spec:
         values:
           application_id: ${{ parameters.application_id }}
           description: ${{ parameters.description }}
+          request_cpu: ${{ parameters.request_cpu }}
+          request_memory: ${{ parameters.request_memory }}
 
     - id: publish
       name: Publishing to Source Code Repository
