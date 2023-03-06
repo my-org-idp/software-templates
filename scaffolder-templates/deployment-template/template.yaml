@@ -20,8 +20,7 @@ spec:
           title: Name
           type: string
           description: Unique name of the deployment application
-          ui:placeholder: deployment-<name application>
-          ui:field: EntityNamePicker
+          ui:autofocus: true
         description:
           title: Description
           type: string
@@ -34,6 +33,17 @@ spec:
           ui:options:
             allowedKinds:
               - Group
+    - title: Fill in Resources Application
+      required:
+        - requests_cpu
+        - requests_memory
+      properties:
+        requests_cpu:
+          title: Request CPU
+          type: string
+        requests_memory:
+          title: Request Memory
+          type: string
 
     - title: Application repository Information
       required:
