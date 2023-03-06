@@ -67,7 +67,7 @@ spec:
           application_id: ${{ parameters.application_id }}
           description: ${{ parameters.description }}
           requests_cpu: ${{ parameters.requests_cpu }}
-          requests_cpu: ${{ parameters.requests_cpu }}
+          requests_memory: ${{ parameters.requests_memory }}
 
     - id: publish
       name: Publishing to Source Code Repository
