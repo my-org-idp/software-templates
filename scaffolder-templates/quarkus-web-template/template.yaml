@@ -20,6 +20,18 @@ spec:
         - owner
         - java_package_name
       properties:
+        inputObject:
+          type: object
+          title: object input test
+          description: a little nested thing never hurt anyone right?
+          properties:
+            first:
+              type: string
+              title: first
+              backstage:featureFlag: nested-experimental-feature
+            second:
+              type: number
+              title: second
         component_id:
           title: Name
           type: string
