@@ -16,6 +16,18 @@ spec:
       required:
         - appname
       properties:
+        custom:
+          type: string
+          ui:field: SelectFieldFromApi
+          ui:options:
+            title: My Dropdown title
+            description: My custom description for the component
+          path: 'catalog/entity-facets'
+          params:
+            facet: 'kind'
+          arraySelector: 'facets.kind'
+          valueSelector: 'count'
+          labelSelector: 'value'
         appname:
           title: Application Name
           type: string
