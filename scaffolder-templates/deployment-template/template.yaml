@@ -131,8 +131,13 @@ spec:
 
   output:
     links:
-      - title: Source Code Repository
-        url: ${{ steps.publish.output.remoteUrl }}
-      - title: Open Component in catalog
+      - title: Source Code Repository Production
+        url: ${{ steps.publish_production.output.remoteUrl }}
+      - title: Open Component in catalog Production
         icon: catalog
-        entityRef: ${{ steps.register.output.entityRef }}
+        entityRef: ${{ steps.register_production.output.entityRef }}
+      - title: Source Code Repository Non Production
+        url: ${{ steps.publish_non_production.output.remoteUrl }}
+      - title: Open Component in catalog Non Production
+        icon: catalog
+        entityRef: ${{ steps.register_non_production.output.entityRef }}
