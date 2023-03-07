@@ -26,6 +26,9 @@ spec:
         chartapp:
           title: Chart Name Application
           type: string
+        revisionchart:
+          title: Chart Version Application
+          type: string
         namespaces:
           title: Namespaces Application
           type: string
@@ -79,6 +82,7 @@ spec:
           appname: ${{ parameters.appname }}
           repochart: ${{ parameters.repochart }}
           chartapp: ${{ parameters.chartapp }}
+          revisionchart: ${{ parameters.revisionchart }}
           namespaces: ${{ parameters.namespaces }}
           projectname: ${{ parameters.projectname }}
           env: ${{ parameters.env }}
@@ -88,7 +92,7 @@ spec:
       name: Publishing to Source Code Repository
       action: publish:github
       input:
-        description: This is ${{ parameters.application_id }}
+        description: This is ${{ parameters.appname }}
         repoUrl: ${{ parameters.repoUrl }}
         branch: master
         repoVisibility: private
@@ -98,17 +102,25 @@ spec:
       name: Publishing to Source Code Repository
       action: publish:github
       input:
-        description: This is ${{ parameters.application_id }}
+        description: This is ${{ parameters.appname }}
         repoUrl: ${{ parameters.repoUrl }}
         branch: ${{ parameters.env }}
         repoVisibility: private
 
-    - id: register
-      if: ${{ parameters.dryRun !== true }}
-      name: Registering to the Catalog
+    - id: register production
+      if: ${{ parameters.dryRun !== true and parameters.env === "production" }}
+      name: Registering to the Catalog Production
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        repoContentsUrl: ${{ steps.publish-production.output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+
+    - id: register non production
+      if: ${{ parameters.dryRun !== true and parameters.env !== "production" }}
+      name: Registering to the Catalog Non Production 
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish-non-production.output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
 
     - name: Results
