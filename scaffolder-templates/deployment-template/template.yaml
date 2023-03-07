@@ -107,7 +107,7 @@ spec:
         branch: ${{ parameters.env }}
         repoVisibility: private
 
-    - id: register production
+    - id: register-production
       if: ${{ parameters.dryRun !== true and parameters.env === "production" }}
       name: Registering to the Catalog Production
       action: catalog:register
@@ -115,7 +115,7 @@ spec:
         repoContentsUrl: ${{ steps.publish-production.output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
 
-    - id: register non production
+    - id: register-non-production
       if: ${{ parameters.dryRun !== true and parameters.env !== "production" }}
       name: Registering to the Catalog Non Production 
       action: catalog:register
