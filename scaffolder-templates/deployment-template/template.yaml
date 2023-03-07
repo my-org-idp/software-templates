@@ -22,9 +22,9 @@ spec:
           ui:options:
             title: My Dropdown title
             description: My custom description for the component
-          path: 'catalog/entity-facets'
-          params:
-            facet: 'kind'
+            path: 'catalog/entity-facets'
+            params:
+              facet: 'kind'
           arraySelector: 'facets.kind'
           valueSelector: 'count'
           labelSelector: 'value'
