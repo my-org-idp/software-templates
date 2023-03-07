@@ -97,15 +97,15 @@ spec:
         branch: master
         repoVisibility: private
 
-    - id: publish_non_production
-      if: ${{ parameters.dryRun !== true and parameters.env !== "production" }}
-      name: Publishing to Source Code Repository Non Production
-      action: publish:github
-      input:
-        description: This is ${{ parameters.appname }}
-        repoUrl: ${{ parameters.repoUrl }}
-        branch: ${{ parameters.env }}
-        repoVisibility: private
+    # - id: publish_non_production
+    #   if: ${{ parameters.dryRun !== true and parameters.env !== "production" }}
+    #   name: Publishing to Source Code Repository Non Production
+    #   action: publish:github
+    #   input:
+    #     description: This is ${{ parameters.appname }}
+    #     repoUrl: ${{ parameters.repoUrl }}
+    #     branch: ${{ parameters.env }}
+    #     repoVisibility: private
 
     - id: register_production
       if: ${{ parameters.dryRun !== true and parameters.env === "production" }}
@@ -115,13 +115,13 @@ spec:
         repoContentsUrl: ${{ steps.publish_production.output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
 
-    - id: register_non_production
-      if: ${{ parameters.dryRun !== true and parameters.env !== "production" }}
-      name: Registering to the Catalog Non Production 
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps.publish_non_production.output.repoContentsUrl }}
-        catalogInfoPath: '/catalog-info.yaml'
+    # - id: register_non_production
+    #   if: ${{ parameters.dryRun !== true and parameters.env !== "production" }}
+    #   name: Registering to the Catalog Non Production 
+    #   action: catalog:register
+    #   input:
+    #     repoContentsUrl: ${{ steps.publish_non_production.output.repoContentsUrl }}
+    #     catalogInfoPath: '/catalog-info.yaml'
 
     - name: Results
       if: ${{ parameters.dryRun }}
@@ -136,8 +136,8 @@ spec:
       - title: Open Component in catalog Production
         icon: catalog
         entityRef: ${{ steps.register_production.output.entityRef }}
-      - title: Source Code Repository Non Production
-        url: ${{ steps.publish_non_production.output.remoteUrl }}
-      - title: Open Component in catalog Non Production
-        icon: catalog
-        entityRef: ${{ steps.register_non_production.output.entityRef }}
+      # - title: Source Code Repository Non Production
+      #   url: ${{ steps.publish_non_production.output.remoteUrl }}
+      # - title: Open Component in catalog Non Production
+      #   icon: catalog
+      #   entityRef: ${{ steps.register_non_production.output.entityRef }}
