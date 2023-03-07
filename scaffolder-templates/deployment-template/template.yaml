@@ -87,9 +87,9 @@ spec:
           projectname: ${{ parameters.projectname }}
           env: ${{ parameters.env }}
 
-    - id: publish-production
+    - id: publish_production
       if: ${{ parameters.dryRun !== true and parameters.env === "production" }}
-      name: Publishing to Source Code Repository
+      name: Publishing to Source Code Repository Production
       action: publish:github
       input:
         description: This is ${{ parameters.appname }}
@@ -97,9 +97,9 @@ spec:
         branch: master
         repoVisibility: private
 
-    - id: publish-non-production
+    - id: publish_non_production
       if: ${{ parameters.dryRun !== true and parameters.env !== "production" }}
-      name: Publishing to Source Code Repository
+      name: Publishing to Source Code Repository Non Production
       action: publish:github
       input:
         description: This is ${{ parameters.appname }}
@@ -107,20 +107,20 @@ spec:
         branch: ${{ parameters.env }}
         repoVisibility: private
 
-    - id: register-production
+    - id: register_production
       if: ${{ parameters.dryRun !== true and parameters.env === "production" }}
       name: Registering to the Catalog Production
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps.publish-production.output.repoContentsUrl }}
+        repoContentsUrl: ${{ steps.publish_production.output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
 
-    - id: register-non-production
+    - id: register_non_production
       if: ${{ parameters.dryRun !== true and parameters.env !== "production" }}
       name: Registering to the Catalog Non Production 
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps.publish-non-production.output.repoContentsUrl }}
+        repoContentsUrl: ${{ steps.publish_non_production.output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
 
     - name: Results
