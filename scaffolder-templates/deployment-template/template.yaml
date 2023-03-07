@@ -12,39 +12,38 @@ spec:
   type: service
 
   parameters:
-    - title: Provide Information for Application
+    - title: Define Properties For argo.yaml
       required:
-        - application_id
+        - appname
       properties:
-        application_id:
-          title: Name
+        appname:
+          title: Application Name
           type: string
-          description: Unique name of the deployment application
           ui:autofocus: true
-        description:
-          title: Description
+        repochart:
+          title: Repo Chart Name
           type: string
-          description: Help others understand what this deployment repo is for.
-        owner:
-          title: Owner
+        chartapp:
+          title: Chart Name Application
           type: string
-          description: IdP owner of the component
-          ui:field: OwnerPicker
-          ui:options:
-            allowedKinds:
-              - Group
-    - title: Fill in Resources Application
-      required:
-        - requests_cpu
-        - requests_memory
-      properties:
-        requests_cpu:
-          title: Request CPU
+        namespaces:
+          title: Namespaces Application
           type: string
-        requests_memory:
-          title: Request Memory
+          default: 'default'
+        projectname:
+          title: Project Name Application
           type: string
-
+          enum:
+            - rise-apps
+            - rise-infra
+        env:
+          title: Environment Application
+          type: string
+          enum:
+            - dev
+            - sandbox
+            - production
+        
     - title: Application repository Information
       required:
         - repoUrl
@@ -61,6 +60,15 @@ spec:
           type: boolean
           default: true
 
+        owner:
+          title: Owner
+          type: string
+          description: IdP owner of the component
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds:
+              - Group
+
   steps:
     - id: template
       name: Generating component
@@ -68,20 +76,32 @@ spec:
       input:
         url: ./skeleton
         values:
-          application_id: ${{ parameters.application_id }}
-          description: ${{ parameters.description }}
-          requests_cpu: ${{ parameters.requests_cpu }}
-          requests_memory: ${{ parameters.requests_memory }}
+          appname: ${{ parameters.appname }}
+          repochart: ${{ parameters.repochart }}
+          chartapp: ${{ parameters.chartapp }}
+          namespaces: ${{ parameters.namespaces }}
+          projectname: ${{ parameters.projectname }}
+          env: ${{ parameters.env }}
 
-    - id: publish
-      if: ${{ parameters.dryRun !== true }}
+    - id: publish-production
+      if: ${{ parameters.dryRun !== true and parameters.env === "production" }}
       name: Publishing to Source Code Repository
       action: publish:github
       input:
         description: This is ${{ parameters.application_id }}
         repoUrl: ${{ parameters.repoUrl }}
-        defaultBranch: main
-        repoVisibility: public
+        branch: master
+        repoVisibility: private
+
+    - id: publish-non-production
+      if: ${{ parameters.dryRun !== true and parameters.env !== "production" }}
+      name: Publishing to Source Code Repository
+      action: publish:github
+      input:
+        description: This is ${{ parameters.application_id }}
+        repoUrl: ${{ parameters.repoUrl }}
+        branch: ${{ parameters.env }}
+        repoVisibility: private
 
     - id: register
       if: ${{ parameters.dryRun !== true }}
@@ -90,7 +110,7 @@ spec:
       input:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
-        
+
     - name: Results
       if: ${{ parameters.dryRun }}
       action: debug:log

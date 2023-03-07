@@ -1,0 +1,7 @@
+appname: ${{values.appname}}
+env: ${{values.env}}
+revisionchart: ${{values.revisionchart}}
+repochart: ${{values.repochart}}
+chartapp: ${{values.chartapp}}
+namespaces: ${{values.namespaces}}
+projectname: ${{values.projectname}}
