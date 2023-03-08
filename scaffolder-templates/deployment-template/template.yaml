@@ -46,26 +46,40 @@ spec:
             - dev
             - sandbox
             - production
+    - title: Define Resources for values.yaml
+      properties:
+        resources_requests_cpu:
+          title: Define resources requests CPU Application
+          type: string
+        resources_requests_memory:
+          title: Define resources requests Memory Application
+          type: string
+        resources_limit_cpu:
+          title: Define resources limit CPU Application
+          type: string
+        resources_limit_memory:
+          title: Define resources limit Memory Application
+          type: string
     - title: Define HPA for values.yaml
       properties:
-        enabledHPA:
+        HPAenabled:
           title: Enabled HPA
           type: boolean
           default: false
           ui:widget: radio
-        minReplicasHPA:
+        HPAminReplicas:
           title: minimum Replicas
           type: number
           default: 2
-        maxReplicasHPA:
+        HPAmaxReplicas:
           title: maximum Replicas
           type: number
           default: 4
-        targetCPUUtilizationPercentageHPA:
+        HPAtargetCPUUtilizationPercentage:
           title: target CPU Utilization Percentage
           type: number
           default: 80
-        metricsHPA:
+        HPAmetrics:
           title: Metrics HPA
           type: array
           items:
@@ -114,11 +128,17 @@ spec:
           namespaces: ${{ parameters.namespaces }}
           projectname: ${{ parameters.projectname }}
           env: ${{ parameters.env }}
-          enabledHPA: ${{parameters.enabledHPA}}
-          minReplicasHPA: ${{parameters.minReplicasHPA}}
-          maxReplicasHPA: ${{parameters.maxReplicasHPA}}
-          targetCPUUtilizationPercentageHPA: ${{parameters.targetCPUUtilizationPercentageHPA}}
-          metricsHPA: ${{parameters.metricsHPA}}
+          HPAenabled: ${{parameters.HPAenabled}}
+          HPAminReplicas: ${{parameters.HPAminReplicas}}
+          HPAmaxReplicas: ${{parameters.HPAmaxReplicas}}
+          HPAtargetCPUUtilizationPercentage: ${{parameters.HPAtargetCPUUtilizationPercentage}}
+          HPAmetrics: ${{parameters.HPAmetrics}}
+          resources_requests_cpu: ${{parameters.resources_requests_cpu}}
+          resources_requests_memory: ${{parameters.resources_requests_memory}}
+          resources_limit_cpu: ${{parameters.resources_limit_cpu}}
+          resources_limit_memory: ${{parameters.resources_limit_memory}}
+
+         
     - id: publish_production
       if: ${{ parameters.dryRun !== true and parameters.env === "production" }}
       name: Publishing to Source Code Repository Production

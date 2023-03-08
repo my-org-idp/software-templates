@@ -1,19 +1,19 @@
 resources:
   requests:
-    cpu: ${{values.requests_cpu}}
-    memory: ${{values.requests_memory}}
+    cpu: ${{values.resources_requests_cpu}}
+    memory: ${{values.resources_requests_memory}}
   limits:
-    cpu: 500m
-    memory: 1024Mi
-
+    cpu: ${{values.resources_limit_cpu}}
+    memory: ${{values.resources_limit_memory}}
+    
 hpa:
-  enabled: ${{values.enabledHPA}}
-  minReplicas: ${{values.minReplicasHPA}}
-  maxReplicas: ${{values.maxReplicasHPA}}
-  targetCPUUtilizationPercentage: ${{values.targetCPUUtilizationPercentageHPA}}
-  {%- if values.metricsHPA |length > 1 %}
+  enabled: ${{values.HPAenabled}}
+  minReplicas: ${{values.HPAminReplicas}}
+  maxReplicas: ${{values.HPAmaxReplicas}}
+  targetCPUUtilizationPercentage: ${{values.HPAtargetCPUUtilizationPercentage}}
+  {%- if values.HPAmetrics |length > 1 %}
   metrics: 
-  {%- for value in values.metricsHPA  %}
+  {%- for value in values.HPAmetrics  %}
   - ${{ value }}
   {%- endfor %}
   {%- else %}
