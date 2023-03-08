@@ -16,18 +16,6 @@ spec:
       required:
         - appname
       properties:
-        custom:
-          type: string
-          ui:field: SelectFieldFromApi
-          ui:options:
-            title: My Dropdown title
-            description: My custom description for the component
-            path: 'catalog/entity-facets'
-            params:
-              facet: 'kind'
-          arraySelector: 'facets.kind'
-          valueSelector: 'count'
-          labelSelector: 'value'
         appname:
           title: Application Name
           type: string
@@ -58,7 +46,34 @@ spec:
             - dev
             - sandbox
             - production
-        
+    - title: Define Properties For values.yaml
+      required:
+        - flag
+      arrayObjects:
+        title: Define HPA Application
+        type: array
+        ui:options:
+          addable: false
+          orderable: false
+          removable: false
+        items:
+          type: object
+          properties:
+            array:
+              title: Array string with default value
+              type: string
+              default: value3
+              enum:
+                - value1
+                - value2
+                - value3
+            flag:
+              title: Boolean flag
+              type: boolean
+              ui:widget: radio
+            someInput:
+              title: Simple text input
+              type: string
     - title: Application repository Information
       required:
         - repoUrl
