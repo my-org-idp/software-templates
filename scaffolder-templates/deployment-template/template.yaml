@@ -46,10 +46,10 @@ spec:
             - dev
             - sandbox
             - production
-    - title: Define Properties For values.yaml
+    - title: Fill in some steps
       properties:
         arrayObjects:
-          title: Define HPA Application
+          title: Array with custom objects
           type: array
           ui:options:
             addable: false
