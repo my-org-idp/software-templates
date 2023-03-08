@@ -52,7 +52,7 @@ spec:
           title: Enabled HPA
           type: boolean
           default: false
-          ui:widget: checkboxes
+          ui:widget: radio
         minReplicas:
           title: minimum Replicas
           type: number
