@@ -52,6 +52,7 @@ spec:
           title: Enable HPA
           type: boolean
           ui:widget: radio
+          ui:field: CustomField
       
     - title: Application repository Information
       required:
