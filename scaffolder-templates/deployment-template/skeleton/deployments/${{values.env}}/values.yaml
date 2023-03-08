@@ -12,7 +12,6 @@ hpa:
   maxReplicas: ${{values.maxReplicasHPA}}
   targetCPUUtilizationPercentage: ${{values.targetCPUUtilizationPercentageHPA}}
   {% for value in values.metricsHPA -%}
-  metrics:
     - ${{ value }}
   {%- endfor %}
  
