@@ -11,12 +11,12 @@ hpa:
   minReplicas: ${{values.minReplicasHPA}}
   maxReplicas: ${{values.maxReplicasHPA}}
   targetCPUUtilizationPercentage: ${{values.targetCPUUtilizationPercentageHPA}}
-  {% if values.metricsHPA is defined %}
-  metrics:
-    {% for value in values.metricsHPA %}
-    - ${{ value }}
+  {%- if values.metricsHPA |length > 1 %}
+  metrics: 
+    {%- for value in values.metricsHPA  %}
+    - {{ value }}
     {%- endfor %}
-  {% else %}
+  {%- else %}
   metrics: []
-  {% endif %}
+  {%- endif %}
  
