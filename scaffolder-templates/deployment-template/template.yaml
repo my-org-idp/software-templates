@@ -53,18 +53,24 @@ spec:
           type: boolean
           default: false
           ui:widget: radio
-        minReplicas:
+        minReplicasHPA:
           title: minimum Replicas
           type: number
           default: 2
-        maxReplicas:
+        maxReplicasHPA:
           title: maximum Replicas
           type: number
           default: 4
-        targetCPUUtilizationPercentage:
+        targetCPUUtilizationPercentageHPA:
           title: target CPU Utilization Percentage
           type: number
           default: 80
+        metricsHPA:
+          title: Metrics HPA
+          type: array
+          items:
+            type: string
+
           
         
           
