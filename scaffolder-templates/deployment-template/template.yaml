@@ -117,7 +117,7 @@ spec:
           minReplicasHPA: ${{parameters.minReplicasHPA}}
           maxReplicasHPA: ${{parameters.maxReplicasHPA}}
           targetCPUUtilizationPercentageHPA: ${{parameters.targetCPUUtilizationPercentageHPA}}
-
+          metricsHPA: ${{parameters.metricsHPA}}
     - id: publish_production
       if: ${{ parameters.dryRun !== true and parameters.env === "production" }}
       name: Publishing to Source Code Repository Production
