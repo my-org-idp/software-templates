@@ -48,24 +48,19 @@ spec:
             - production
     - title: Fill in some steps
       properties:
-        arrayObjects:
-          title: Array with custom objects
+        Tags:
           type: array
-          ui:options:
-            addable: false
-            orderable: false
-            removable: false
           items:
             type: object
+            description: Secret tags
+            title: tag
             properties:
-              array:
-                title: Array string with default value
+              Key:
                 type: string
-                default: value3
-                enum:
-                  - value1
-                  - value2
-                  - value3
+                title: Key
+              Value:
+                type: string
+                title: Value
               flag:
                 title: Boolean flag
                 type: boolean
@@ -112,6 +107,7 @@ spec:
           namespaces: ${{ parameters.namespaces }}
           projectname: ${{ parameters.projectname }}
           env: ${{ parameters.env }}
+          tags: ${{ parameters.Tags }}
 
     - id: publish_production
       if: ${{ parameters.dryRun !== true and parameters.env === "production" }}
