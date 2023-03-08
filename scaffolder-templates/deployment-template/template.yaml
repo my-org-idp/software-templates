@@ -39,7 +39,7 @@ spec:
                   title: Password
                   ui:widget: password
               required:
-                - Password
+                - password
     - title: Define Parameters For argo.yaml
       required:
         - appname
