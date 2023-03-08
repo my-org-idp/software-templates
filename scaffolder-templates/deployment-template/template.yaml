@@ -53,6 +53,9 @@ spec:
           type: boolean
           ui:widget: radio
           ui:field: CustomField
+          ui:options:
+            params:
+              facet: 'kind'
       
     - title: Application repository Information
       required:
