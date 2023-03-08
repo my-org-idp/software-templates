@@ -13,9 +13,9 @@ hpa:
   targetCPUUtilizationPercentage: ${{values.targetCPUUtilizationPercentageHPA}}
   {%- if values.metricsHPA |length > 1 %}
   metrics: 
-    {%- for value in values.metricsHPA  %}
-    - ${{ value }}
-    {%- endfor %}
+  {%- for value in values.metricsHPA  %}
+  - ${{ value }}
+  {%- endfor %}
   {%- else %}
   metrics: []
   {%- endif %}
