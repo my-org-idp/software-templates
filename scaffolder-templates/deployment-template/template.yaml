@@ -51,12 +51,12 @@ spec:
         enabledHPA:
           title: Enabled HPA
           type: array
-          default: false
+          default: 'false'
           items:
             type: boolean
             enum:
-              - true
-              - false
+              - 'true'
+              - 'false'
           uniqueItems: true
           ui:widget: checkboxes
         minReplicas:
