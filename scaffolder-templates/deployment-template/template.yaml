@@ -12,49 +12,34 @@ spec:
   type: service
 
   parameters:
-    - title: Animal Kingdon
-      type: object
+    - title: Conditionally set password
+      required:
+        - passwordEnabled
       properties:
-        animal:
+        passwordEnabled:
+          title: Is password enabled?
+          type: string
+          default: No
           enum:
-          - Cat
-          - Fish
-      allOf:
-      - if:
-          properties:
-            animal:
-              const: Cat
-        then:
-          properties:
-            food:
-              type: string
-              enum:
-              - meat
-              - grass
-              - fish
-          required:
-          - food
-      - if:
-          properties:
-            animal:
-              const: Fish
-        then:
-          properties:
-            food:
-              type: string
-              enum:
-              - insect
-              - worms
-            water:
-              type: string
-              enum:
-              - lake
-              - sea
-          required:
-          - food
-          - water
-      - required:
-        - animal
+            - Yes
+            - No
+      dependencies:
+        passwordEnabled:
+          'oneOf':
+            - properties:
+                passwordEnabled:
+                  enum:
+                    - No
+            - properties:
+                passwordEnabled:
+                  enum:
+                    - Yes
+                password:
+                  type: string
+                  title: Password
+                  ui:widget: password
+              required:
+                - Password
     - title: Define Parameters For argo.yaml
       required:
         - appname
