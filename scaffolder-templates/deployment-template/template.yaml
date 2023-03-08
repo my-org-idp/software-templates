@@ -50,7 +50,6 @@ spec:
       properties:
         enabledHPA:
           title: Enabled HPA
-          type: array
           type: boolean
           default: false
         minReplicas:
