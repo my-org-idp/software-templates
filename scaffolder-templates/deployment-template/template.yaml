@@ -12,7 +12,7 @@ spec:
   type: service
 
   parameters:
-    - title: Define Properties For argo.yaml
+    - title: Define Parameters For argo.yaml
       required:
         - appname
       properties:
@@ -46,28 +46,13 @@ spec:
             - dev
             - sandbox
             - production
-    - title: Fill in some steps
+    - title: Define Parameters for values.yaml
       properties:
-        Tags:
-          type: array
-          items:
-            type: object
-            description: Secret tags
-            title: tag
-            properties:
-              Key:
-                type: string
-                title: Key
-              Value:
-                type: string
-                title: Value
-              flag:
-                title: Boolean flag
-                type: boolean
-                ui:widget: radio
-              someInput:
-                title: Simple text input
-                type: string
+        hpa:
+          title: Enable HPA
+          type: boolean
+          ui:widget: radio
+      
     - title: Application repository Information
       required:
         - repoUrl
