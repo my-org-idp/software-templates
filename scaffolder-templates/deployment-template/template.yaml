@@ -58,7 +58,7 @@ spec:
               - true
               - false
           uniqueItems: true
-          ui:widget: radio
+          ui:widget: checkboxes
         minReplicas:
           title: minimum Replicas
           type: number
