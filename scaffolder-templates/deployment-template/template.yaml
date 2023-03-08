@@ -57,7 +57,6 @@ spec:
             enum:
               - 'true'
               - 'false'
-          uniqueItems: true
           ui:widget: checkboxes
         minReplicas:
           title: minimum Replicas
