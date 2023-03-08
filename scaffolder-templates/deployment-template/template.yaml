@@ -46,13 +46,34 @@ spec:
             - dev
             - sandbox
             - production
-    - title: Define Parameters for values.yaml
+    - title: Define HPA for values.yaml
       properties:
-        hpa:
-          title: Enable HPA
-          type: boolean
+        enabledHPA:
+          title: Enabled HPA
+          type: array
+          default: false
+          items:
+            type: boolean
+            enum:
+              - true
+              - false
+          uniqueItems: true
           ui:widget: radio
-          ui:field: SelectFieldFromApi
+        minReplicas:
+          title: minimum Replicas
+          type: number
+          default: 2
+        maxReplicas:
+          title: maximum Replicas
+          type: number
+          default: 4
+        targetCPUUtilizationPercentage:
+          title: target CPU Utilization Percentage
+          type: number
+          default: 80
+          
+        
+          
     - title: Application repository Information
       required:
         - repoUrl
