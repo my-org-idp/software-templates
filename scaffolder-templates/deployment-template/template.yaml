@@ -47,33 +47,32 @@ spec:
             - sandbox
             - production
     - title: Define Properties For values.yaml
-      required:
-        - arrayObjects
-      arrayObjects:
-        title: Define HPA Application
-        type: array
-        ui:options:
-          addable: false
-          orderable: false
-          removable: false
-        items:
-          type: object
-          properties:
-            array:
-              title: Array string with default value
-              type: string
-              default: value3
-              enum:
-                - value1
-                - value2
-                - value3
-            flag:
-              title: Boolean flag
-              type: boolean
-              ui:widget: radio
-            someInput:
-              title: Simple text input
-              type: string
+      properties:
+        arrayObjects:
+          title: Define HPA Application
+          type: array
+          ui:options:
+            addable: false
+            orderable: false
+            removable: false
+          items:
+            type: object
+            properties:
+              array:
+                title: Array string with default value
+                type: string
+                default: value3
+                enum:
+                  - value1
+                  - value2
+                  - value3
+              flag:
+                title: Boolean flag
+                type: boolean
+                ui:widget: radio
+              someInput:
+                title: Simple text input
+                type: string
     - title: Application repository Information
       required:
         - repoUrl
