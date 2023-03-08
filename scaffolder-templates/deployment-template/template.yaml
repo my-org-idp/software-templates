@@ -113,10 +113,10 @@ spec:
           namespaces: ${{ parameters.namespaces }}
           projectname: ${{ parameters.projectname }}
           env: ${{ parameters.env }}
-          enabledHPA: ${{values.enabledHPA}}
-          minReplicasHPA: ${{values.minReplicasHPA}}
-          maxReplicasHPA: ${{values.maxReplicasHPA}}
-          targetCPUUtilizationPercentageHPA: ${{values.targetCPUUtilizationPercentageHPA}}
+          enabledHPA: ${{parameters.enabledHPA}}
+          minReplicasHPA: ${{parameters.minReplicasHPA}}
+          maxReplicasHPA: ${{parameters.maxReplicasHPA}}
+          targetCPUUtilizationPercentageHPA: ${{parameters.targetCPUUtilizationPercentageHPA}}
 
     - id: publish_production
       if: ${{ parameters.dryRun !== true and parameters.env === "production" }}
