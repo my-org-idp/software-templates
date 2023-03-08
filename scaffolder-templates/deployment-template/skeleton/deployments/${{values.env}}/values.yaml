@@ -14,7 +14,7 @@ hpa:
   {%- if values.metricsHPA |length > 1 %}
   metrics: 
     {%- for value in values.metricsHPA  %}
-    - {{ value }}
+    - ${{ value }}
     {%- endfor %}
   {%- else %}
   metrics: []
