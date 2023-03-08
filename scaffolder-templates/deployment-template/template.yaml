@@ -48,7 +48,7 @@ spec:
             - production
     - title: Define Properties For values.yaml
       required:
-        - flag
+        - arrayObjects
       arrayObjects:
         title: Define HPA Application
         type: array
