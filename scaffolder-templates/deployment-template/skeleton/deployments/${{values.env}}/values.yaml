@@ -5,3 +5,10 @@ resources:
   limits:
     cpu: 500m
     memory: 1024Mi
+
+hpa:
+  enabled: ${{values.enabledHPA}}
+  minReplicas: ${{values.minReplicasHPA}}
+  maxReplicas: ${{values.maxReplicasHPA}}
+  targetCPUUtilizationPercentage: ${{values.targetCPUUtilizationPercentageHPA}}
+  metrics: []
