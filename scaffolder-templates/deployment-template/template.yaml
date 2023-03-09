@@ -18,11 +18,13 @@ spec:
       properties:
         passwordEnabled:
           title: Is password enabled?
-          type: string
+          type: array
           default: false
-          enum:
-            - true
-            - false
+          items:
+            type: boolean
+            enum:
+              - 'true'
+              - 'false'
       dependencies:
         passwordEnabled:
           'oneOf':
