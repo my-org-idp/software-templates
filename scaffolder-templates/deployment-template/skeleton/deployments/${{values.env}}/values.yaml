@@ -21,6 +21,10 @@ hpa:
   {%- endif %}
   {%- endif %}
 
+image:
+  repository: ${{values.ImageRepository}}/${{values.ImageName}}
+  tag: ${{values.ImageTag}}
+  
 {% if values.Environment  | length > 0 -%}
 env:
 {%- for kv in values.Environment  %}

@@ -90,6 +90,22 @@ spec:
               Value:
                 type: string
                 title: Value
+    - title: Define Image and Version Application
+      required:
+        - ImageName
+        - ImageTag
+      properties:
+        ImageRepository:
+          title: Image Repository 
+          type: string
+          default: asia-southeast2-docker.pkg.dev/rise-utility-343807/rise-apps
+          readOnly: true
+        ImageName:
+          title: Image Name Application
+          type: string
+        ImageTag:
+          title: Image tag version Application
+          type: string
     - title: Define HPA for values.yaml
       required:
         - hpaEnabled
@@ -182,6 +198,9 @@ spec:
           resources_limit_memory: ${{parameters.resources_limit_memory}}
           Environment: ${{parameters.Environment}}
           ApplicationProperties: ${{parameters.ApplicationProperties}}
+          ImageRepository: ${{parameters.ImageRepository}}
+          ImageName: ${{parameters.ImageName}}
+          ImageTag: ${{parameters.ImageTag}}
          
     - id: publish_production
       if: ${{ parameters.dryRun !== true and parameters.env === "production" }}
