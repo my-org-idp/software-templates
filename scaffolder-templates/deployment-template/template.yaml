@@ -12,35 +12,6 @@ spec:
   type: service
 
   parameters:
-    - title: Conditionally set password
-      required:
-        - passwordEnabled
-      properties:
-        passwordEnabled:
-          title: Is password enabled?
-          type: string
-          default: false
-          ui:autofocus: true
-          enum:
-            - true
-            - false
-      dependencies:
-        passwordEnabled:
-          'oneOf':
-            - properties:
-                passwordEnabled:
-                  enum:
-                    - false
-            - properties:
-                passwordEnabled:
-                  enum:
-                    - true
-                password:
-                  type: string
-                  title: Password
-                  ui:widget: password
-              required:
-                - password
     - title: Define Parameters For argo.yaml
       required:
         - appname
@@ -93,31 +64,42 @@ spec:
       properties:
         HPAenabled:
           title: Enabled HPA
-          type: boolean
-          default: false
-          ui:widget: radio
-        HPAminReplicas:
-          title: minimum Replicas
-          type: number
-          default: 2
-        HPAmaxReplicas:
-          title: maximum Replicas
-          type: number
-          default: 4
-        HPAtargetCPUUtilizationPercentage:
-          title: target CPU Utilization Percentage
-          type: number
-          default: 80
-        HPAmetrics:
-          title: Metrics HPA
-          type: array
-          items:
-            type: string
-          uniqueItems: true
-
-          
-        
-          
+          default: 'false'
+          type: string
+          ui:autofocus: true
+          enum:
+            - 'true'
+            - 'false'
+        dependencies:
+          HPAenabled:
+            'oneOf':
+              - properties:
+                  HPAenabled:
+                    enum:
+                      - 'false'
+              - properties:
+                  HPAenabled:
+                    enum:
+                      - 'true'
+                  HPAminReplicas:
+                    title: minimum Replicas
+                    type: number
+                    default: 2
+                  HPAmaxReplicas:
+                    title: maximum Replicas
+                    type: number
+                    default: 4
+                  HPAtargetCPUUtilizationPercentage:
+                    title: target CPU Utilization Percentage
+                    type: number
+                    default: 80
+                  HPAmetrics:
+                    title: Metrics HPA
+                    type: array
+                    items:
+                      type: string
+                    uniqueItems: true
+                    
     - title: Application repository Information
       required:
         - repoUrl
