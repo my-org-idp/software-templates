@@ -7,6 +7,7 @@ resources:
     memory: ${{values.resources_limit_memory}}Mi    
 hpa:
   enabled: ${{values.hpaEnabled}}
+  {%- if values.hpaEnabled %}
   minReplicas: ${{values.hpaMinReplicas}}
   maxReplicas: ${{values.HPAmaxReplicas}}
   targetCPUUtilizationPercentage: ${{values.hpaTargetCPUUtilizationPercentage}}
@@ -18,6 +19,8 @@ hpa:
   {%- else %}
   metrics: []
   {%- endif %}
+  {%- endif %}
+
 {% if values.Environment  | length > 0 -%}
 env:
 {%- for kv in values.Environment  %}
