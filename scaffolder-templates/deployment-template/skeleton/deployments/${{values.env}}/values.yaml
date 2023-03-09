@@ -7,7 +7,7 @@ resources:
     memory: ${{values.resources_limit_memory}}Mi    
 hpa:
   enabled: ${{values.hpaEnabled}}
-  {%- if values.hpaEnabled == true %}
+  {%- if values.hpaEnabled == 'true' %}
   minReplicas: ${{values.hpaMinReplicas}}
   maxReplicas: ${{values.HPAmaxReplicas}}
   targetCPUUtilizationPercentage: ${{values.hpaTargetCPUUtilizationPercentage}}
@@ -49,7 +49,7 @@ ingress:
     - ${{ host }}
     {%- endfor %}
   {% endif -%}
-  {%- if values.IngressTLSEnabled == true %}
+  {%- if values.IngressTLSEnabled == 'true' %}
   tls:
   {%- for i in IngressTLS  %}
   - secretName: ${{i.IngressSecretName}}
