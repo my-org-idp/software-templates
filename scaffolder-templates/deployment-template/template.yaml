@@ -20,6 +20,7 @@ spec:
           title: Is password enabled?
           type: string
           default: 'false'
+          ui:widget: checkboxes
           enum:
             - 'true'
             - 'false'
