@@ -1,10 +1,10 @@
 resources:
   requests:
-    cpu: ${{values.resources_requests_cpu}}
-    memory: ${{values.resources_requests_memory}}
+    cpu: ${{values.resources_requests_cpu}}m
+    memory: ${{values.resources_requests_memory}}Mi
   limits:
-    cpu: ${{values.resources_limit_cpu}}
-    memory: ${{values.resources_limit_memory}}    
+    cpu: ${{values.resources_limit_cpu}}m
+    memory: ${{values.resources_limit_memory}}Mi    
 hpa:
   enabled: ${{values.hpaEnabled}}
   minReplicas: ${{values.hpaMinReplicas}}

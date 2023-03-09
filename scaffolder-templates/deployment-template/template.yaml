@@ -29,7 +29,6 @@ spec:
         revisionchart:
           title: Chart Version Application
           type: string
-          ui:help: 'Please input with format version ex. 1.0.0'
         namespaces:
           title: Namespaces Application
           type: string
@@ -51,16 +50,20 @@ spec:
       properties:
         resources_requests_cpu:
           title: Define resources requests CPU Application
-          type: string
+          type: number
+          default: 250
         resources_requests_memory:
           title: Define resources requests Memory Application
-          type: string
+          type: number
+          default: 256
         resources_limit_cpu:
           title: Define resources limit CPU Application
-          type: string
+          type: number
+          default: 500
         resources_limit_memory:
           title: Define resources limit Memory Application
-          type: string
+          type: number
+          default: 1024
     - title: Define Environment Variable Application 
       properties:
         Environment:
