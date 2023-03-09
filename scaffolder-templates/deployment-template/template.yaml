@@ -91,9 +91,6 @@ spec:
                 type: string
                 title: Value
     - title: Define Ingress Application
-      required:
-        - IngressTLSEnabled
-        - IngressEnabled
       properties:
         IngressEnabled:
           title: Enabled Inggress
@@ -287,6 +284,13 @@ spec:
           ImageRepository: ${{parameters.ImageRepository}}
           ImageName: ${{parameters.ImageName}}
           ImageTag: ${{parameters.ImageTag}}
+          IngressEnabled: ${{parameters.IngressEnabled}}
+          IngressHost: ${{parameters.IngressHost}}
+          IngressClassName: ${{parameters.IngressClassName}}
+          IngressAnnotations: ${{parameters.IngressAnnotations}}
+          IngressPath: ${{parameters.IngressPath}}
+          IngressTLSEnabled: ${{parameters.IngressTLSEnabled}}
+          IngressTLS: ${{parameters.IngressTLS}}
          
     - id: publish_production
       if: ${{ parameters.dryRun !== true and parameters.env === "production" }}

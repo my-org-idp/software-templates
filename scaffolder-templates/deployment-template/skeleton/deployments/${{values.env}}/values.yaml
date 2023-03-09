@@ -29,3 +29,34 @@ env:
   ${{ kv.Key }}: ${{ kv.Value }}
 {%- endfor %}
 {% endif -%}
+
+
+ingress:
+  enabled: ${{values.IngressEnabled}}
+  {%- if values.IngressEnabled == true %}
+  ingressClassName: ${{values.IngressClassName}}
+  {% if values.IngressAnnotations  | length > 0 -%}
+  annotations:
+    {%- for kv in values.IngressAnnotations  %}
+    ${{ kv.Key }}: ${{ kv.Value }}
+    {%- endfor %}
+  {% endif -%}
+  labels: {}
+  path: ${{values.IngressPath}}
+  {% if values.IngressHost  | length > 0 -%}
+  hosts:
+    {%- for host in values.IngressHost  %}
+    - ${{ host }}
+    {%- endfor %}
+  {% endif -%}
+  {%- if values.IngressTLSEnabled == true %}
+  tls:
+  {%- for i in IngressTLS  %}
+  - secretName: ${{i.IngressSecretName}}
+    hosts:
+    {%- for j in i.IngressHostTLS  %}
+    - ${{j}}
+    {%- endfor %}
+  {%- endfor %}
+  {%- endif %}
+  {%- endif %}
