@@ -90,6 +90,25 @@ spec:
               Value:
                 type: string
                 title: Value
+    - title: Define Ingress Application
+      properties:
+        array1:
+          type: array
+          items:
+            type: object
+            properties:
+              array2:
+                title: Array string with default value
+                type: string
+                default: value3
+                enum:
+                  - value1
+                  - value2
+                  - value3
+              someInput:
+                title: Simple text input
+                type: string
+
     - title: Define Image and Version Application
       required:
         - ImageName
