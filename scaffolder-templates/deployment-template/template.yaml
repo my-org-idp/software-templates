@@ -72,7 +72,7 @@ spec:
                 title: Key
                 default: VAULT_ENABLE
               Value:
-                type: string
+                type: boolean
                 title: Value
                 default: false
             properties:
