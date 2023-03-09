@@ -70,20 +70,9 @@ spec:
               Key:
                 type: string
                 title: Key
-                default: VAULT_ENABLE
-              Value:
-                type: boolean
-                title: Value
-                default: false
-            properties:
-              Key:
-                type: string
-                title: Key
-                default: JAVA_OPTIONS
               Value:
                 type: string
                 title: Value
-                default: "-Xms256m -Xmx256m -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC"
     - title: Define HPA for values.yaml
       required:
         - hpaEnabled
