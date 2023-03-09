@@ -67,7 +67,7 @@ spec:
           items:
             type: object
             description: Environment Key Value
-            title: tag
+            title: Environment Application
             properties:
               Key:
                 type: string
