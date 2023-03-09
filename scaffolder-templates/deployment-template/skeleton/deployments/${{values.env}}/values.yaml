@@ -33,7 +33,7 @@ env:
 
 ingress:
   enabled: ${{values.IngressEnabled}}
-  {%- if values.IngressEnabled == true %}
+  {%- if values.IngressEnabled == 'true' %}
   ingressClassName: ${{values.IngressClassName}}
   {% if values.IngressAnnotations  | length > 0 -%}
   annotations:
