@@ -112,6 +112,37 @@ spec:
                   enum:
                     - 'false'
             - properties:
+                IngressEnabled:
+                  enum:
+                    - 'true'
+                IngressHost:
+                  title: Input Host
+                  type: array
+                  items:
+                    type: string
+                IngressClassName:
+                  title: Input Ingress Class Name
+                  type: string
+                  default: 'internal'
+                  enum:
+                    - 'external'
+                    - 'internal'
+                IngressAnnotations:
+                  type: array
+                  title: Input Ingress Annotations
+                  items:
+                    type: object
+                    properties:
+                      Key:
+                        type: string
+                        title: Key
+                      Value:
+                        type: string
+                        title: Value
+                IngressPath:
+                  type: string
+                  title: Input Path Ingress
+                  default: '/'
                 IngressTLSEnabled:
                   title: Enabled TLS Inggress
                   default: 'false'
@@ -120,21 +151,6 @@ spec:
                   enum:
                     - 'true'
                     - 'false'
-                IngressEnabled:
-                  enum:
-                    - 'true'
-                IngressHost:
-                  title: Input host
-                  type: array
-                  items:
-                    type: string
-                IngressClassName:
-                  type: string
-                  default: 'internal'
-                  enum:
-                    - 'external'
-                    - 'internal'
-                      
               dependencies:
                 IngressTLSEnabled:
                   'oneOf':
@@ -152,10 +168,10 @@ spec:
                             type: object
                             properties:
                               IngressSecretName:
-                                title: Input secret name for tls
+                                title: Input Secret Name for tls
                                 type: string
                               IngressHostTLS:
-                                title: Input host name for tls
+                                title: Input Host for tls
                                 type: array
                                 items:
                                   type: string
