@@ -91,20 +91,41 @@ spec:
                 type: string
                 title: Value
     - title: Define Ingress Application
+      required:
+        - IngressTLSEnabled
       properties:
-        IngressTLS:
-          type: array
-          items:
-            type: object
-            properties:
-              IngressSecretName:
-                title: Input secret name for tls
-                type: string
-              IngressHostTLS:
-                title: Input host name for tls
-                type: array
-                items:
-                  type: string
+        IngressTLSEnabled:
+          title: Enabled TLS Inggress
+          default: 'false'
+          type: string
+          ui:autofocus: true
+          enum:
+            - 'true'
+            - 'false'
+      dependencies:
+        IngressTLSEnabled:
+          'oneOf':
+            - properties:
+                IngressTLSEnabled:
+                  enum:
+                    - 'false'
+            - properties:
+                IngressTLSEnabled:
+                  enum:
+                    - 'true'
+                IngressTLS:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      IngressSecretName:
+                        title: Input secret name for tls
+                        type: string
+                      IngressHostTLS:
+                        title: Input host name for tls
+                        type: array
+                        items:
+                          type: string
 
     - title: Define Image and Version Application
       required:
