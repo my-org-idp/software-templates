@@ -163,7 +163,7 @@ spec:
           resources_requests_memory: ${{parameters.resources_requests_memory}}
           resources_limit_cpu: ${{parameters.resources_limit_cpu}}
           resources_limit_memory: ${{parameters.resources_limit_memory}}
-
+          Environment: ${{parameters.Environment}}
          
     - id: publish_production
       if: ${{ parameters.dryRun !== true and parameters.env === "production" }}

@@ -11,7 +11,7 @@ hpa:
   minReplicas: ${{values.HPAminReplicas}}
   maxReplicas: ${{values.HPAmaxReplicas}}
   targetCPUUtilizationPercentage: ${{values.HPAtargetCPUUtilizationPercentage}}
-  {%- if values.HPAmetrics |length > 1 %}
+  {%- if values.HPAmetrics |length > 0 %}
   metrics: 
   {%- for value in values.HPAmetrics  %}
   - ${{ value }}
@@ -19,4 +19,10 @@ hpa:
   {%- else %}
   metrics: []
   {%- endif %}
- 
+
+{% if values.Environment  | length > 0 -%}
+env:
+{%- for kv in values.Environment  %}
+{{ kv.Key}}: {{ kv.Value}}
+{%- endfor %}
+{% endif -%}
