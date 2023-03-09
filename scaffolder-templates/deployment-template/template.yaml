@@ -62,11 +62,10 @@ spec:
           type: string
     - title: Define Environment Variable Application 
       properties:
-        app_environment:
+        environment:
           type: array
           items:
             type: object
-            description: Environment Key Value
             title: Environment Application
             properties:
               Key:
