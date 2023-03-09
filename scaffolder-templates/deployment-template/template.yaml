@@ -19,22 +19,22 @@ spec:
         passwordEnabled:
           title: Is password enabled?
           type: string
-          default: 'false'
-          ui:widget: checkboxes
+          default: false
+          ui:autofocus: true
           enum:
-            - 'true'
-            - 'false'
+            - true
+            - false
       dependencies:
         passwordEnabled:
           'oneOf':
             - properties:
                 passwordEnabled:
                   enum:
-                    - 'false'
+                    - false
             - properties:
                 passwordEnabled:
                   enum:
-                    - 'true'
+                    - true
                 password:
                   type: string
                   title: Password
