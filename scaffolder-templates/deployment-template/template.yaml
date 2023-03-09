@@ -133,7 +133,7 @@ spec:
                   default: 'internal'
                   enum:
                     - 'external'
-                    - 'external'
+                    - 'internal'
                       
               dependencies:
                 IngressTLSEnabled:
