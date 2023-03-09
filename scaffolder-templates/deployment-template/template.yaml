@@ -77,6 +77,19 @@ spec:
               Value:
                 type: string
                 title: Value
+    - title: Define Application Properties Consul
+      properties:
+        ApplicationProperties:
+          type: array
+          items:
+            type: object
+            properties:
+              Key:
+                type: string
+                title: Key
+              Value:
+                type: string
+                title: Value
     - title: Define HPA for values.yaml
       required:
         - hpaEnabled
@@ -168,6 +181,7 @@ spec:
           resources_limit_cpu: ${{parameters.resources_limit_cpu}}
           resources_limit_memory: ${{parameters.resources_limit_memory}}
           Environment: ${{parameters.Environment}}
+          ApplicationProperties: ${{parameters.ApplicationProperties}}
          
     - id: publish_production
       if: ${{ parameters.dryRun !== true and parameters.env === "production" }}
