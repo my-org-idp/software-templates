@@ -70,14 +70,25 @@ spec:
               Key:
                 type: string
                 title: Key
+                default: VAULT_ENABLE
               Value:
                 type: string
                 title: Value
+                default: false
+            properties:
+              Key:
+                type: string
+                title: Key
+                default: JAVA_OPTIONS
+              Value:
+                type: string
+                title: Value
+                default: "-Xms256m -Xmx256m -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC"
     - title: Define HPA for values.yaml
       required:
-        - HPAenabled
+        - hpaEnabled
       properties:
-        HPAenabled:
+        hpaEnabled:
           title: Enabled HPA
           default: 'false'
           type: string
@@ -86,29 +97,29 @@ spec:
             - 'true'
             - 'false'
       dependencies:
-        HPAenabled:
+        hpaEnabled:
           'oneOf':
             - properties:
-                HPAenabled:
+                hpaEnabled:
                   enum:
                     - 'false'
             - properties:
-                HPAenabled:
+                hpaEnabled:
                   enum:
                     - 'true'
-                HPAminReplicas:
+                hpaMinReplicas:
                   title: minimum Replicas
                   type: number
                   default: 2
-                HPAmaxReplicas:
+                hpaMaxReplicas:
                   title: maximum Replicas
                   type: number
                   default: 4
-                HPAtargetCPUUtilizationPercentage:
+                hpaTargetCPUUtilizationPercentage:
                   title: target CPU Utilization Percentage
                   type: number
                   default: 80
-                HPAmetrics:
+                hpaMetrics:
                   title: Metrics HPA
                   type: array
                   items:
@@ -154,11 +165,11 @@ spec:
           namespaces: ${{ parameters.namespaces }}
           projectname: ${{ parameters.projectname }}
           env: ${{ parameters.env }}
-          HPAenabled: ${{parameters.HPAenabled}}
-          HPAminReplicas: ${{parameters.HPAminReplicas}}
-          HPAmaxReplicas: ${{parameters.HPAmaxReplicas}}
-          HPAtargetCPUUtilizationPercentage: ${{parameters.HPAtargetCPUUtilizationPercentage}}
-          HPAmetrics: ${{parameters.HPAmetrics}}
+          hpaEnabled: ${{parameters.hpaEnabled}}
+          hpaMinReplicas: ${{parameters.hpaMinReplicas}}
+          hpaMaxReplicas: ${{parameters.hpaMaxReplicas}}
+          hpaTargetCPUUtilizationPercentage: ${{parameters.hpaTargetCPUUtilizationPercentage}}
+          hpaMetrics: ${{parameters.hpaMetrics}}
           resources_requests_cpu: ${{parameters.resources_requests_cpu}}
           resources_requests_memory: ${{parameters.resources_requests_memory}}
           resources_limit_cpu: ${{parameters.resources_limit_cpu}}
