@@ -23,6 +23,6 @@ hpa:
 {% if values.Environment  | length > 0 -%}
 env:
 {%- for kv in values.Environment  %}
-${{ kv.Key }}: ${{ kv.Value }}
+  ${{ kv.Key }}: ${{ kv.Value }}
 {%- endfor %}
 {% endif -%}
