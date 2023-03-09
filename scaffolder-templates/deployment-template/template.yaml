@@ -93,6 +93,7 @@ spec:
     - title: Define Ingress Application
       required:
         - IngressTLSEnabled
+        - IngressEnabled
       properties:
         IngressEnabled:
           title: Enabled Inggress
@@ -112,13 +113,13 @@ spec:
                     - 'false'
             - properties:
                 IngressTLSEnabled:
-                title: Enabled TLS Inggress
-                default: 'false'
-                type: string
-                ui:autofocus: true
-                enum:
-                  - 'true'
-                  - 'false'
+                  title: Enabled TLS Inggress
+                  default: 'false'
+                  type: string
+                  ui:autofocus: true
+                  enum:
+                    - 'true'
+                    - 'false'
                 IngressEnabled:
                   enum:
                     - 'true'
@@ -134,30 +135,30 @@ spec:
                     - 'external'
                     - 'external'
                       
-            dependencies:
-              IngressTLSEnabled:
-                'oneOf':
-                  - properties:
-                      IngressTLSEnabled:
-                        enum:
-                          - 'false'
-                  - properties:
-                      IngressTLSEnabled:
-                        enum:
-                          - 'true'
-                      IngressTLS:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            IngressSecretName:
-                              title: Input secret name for tls
-                              type: string
-                            IngressHostTLS:
-                              title: Input host name for tls
-                              type: array
-                              items:
+              dependencies:
+                IngressTLSEnabled:
+                  'oneOf':
+                    - properties:
+                        IngressTLSEnabled:
+                          enum:
+                            - 'false'
+                    - properties:
+                        IngressTLSEnabled:
+                          enum:
+                            - 'true'
+                        IngressTLS:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              IngressSecretName:
+                                title: Input secret name for tls
                                 type: string
+                              IngressHostTLS:
+                                title: Input host name for tls
+                                type: array
+                                items:
+                                  type: string
 
     - title: Define Image and Version Application
       required:
