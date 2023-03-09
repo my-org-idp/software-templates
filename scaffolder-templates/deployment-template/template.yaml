@@ -92,7 +92,7 @@ spec:
                 title: Value
     - title: Define Ingress Application
       properties:
-        array1:
+        IngressTLS:
           type: array
           items:
             type: object
@@ -107,7 +107,9 @@ spec:
                   - value3
               someInput:
                 title: Simple text input
-                type: string
+                type: array
+                items:
+                  type: string
 
     - title: Define Image and Version Application
       required:
