@@ -60,6 +60,21 @@ spec:
         resources_limit_memory:
           title: Define resources limit Memory Application
           type: string
+    - title: Define Environment Variable Application 
+      properties:
+        app_environment:
+          type: array
+          items:
+            type: object
+            description: Environment Key Value
+            title: tag
+            properties:
+              Key:
+                type: string
+                title: Key
+              Value:
+                type: string
+                title: Value
     - title: Define HPA for values.yaml
       required:
         - HPAenabled
