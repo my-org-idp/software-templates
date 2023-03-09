@@ -18,22 +18,20 @@ spec:
       properties:
         passwordEnabled:
           title: Is password enabled?
-          type: string
-          default: No
-          enum:
-            - Yes
-            - No
+          type: boolean
+          default: false
+          ui:widget: radio
       dependencies:
         passwordEnabled:
           'oneOf':
             - properties:
                 passwordEnabled:
-                  enum:
-                    - No
+                  boolean:
+                    - false
             - properties:
                 passwordEnabled:
-                  enum:
-                    - Yes
+                  boolean:
+                    - true
                 password:
                   type: string
                   title: Password
