@@ -51,7 +51,7 @@ ingress:
   {% endif -%}
   {%- if values.IngressTLSEnabled == 'true' %}
   tls:
-  {%- for i in IngressTLS  %}
+  {%- for i in values.IngressTLS  %}
   - secretName: ${{i.IngressSecretName}}
     hosts:
     {%- for j in i.IngressHostTLS  %}
