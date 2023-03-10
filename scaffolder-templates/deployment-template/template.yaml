@@ -30,6 +30,7 @@ spec:
           title: Chart Version Application
           type: string
           pattern: '\d{1,2}\.\d{1,2}\.\d{1,3}'
+          ui:help: 'Hint: additional description...'
         namespaces:
           title: Namespaces Application
           type: string
